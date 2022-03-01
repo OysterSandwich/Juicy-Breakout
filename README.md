@@ -1,6 +1,6 @@
 # Juicy Breakout
 
-A Godot 3 project exploring the "Juice it or Lose it" GDC 2012 presentation in Godot.
+A Godot 3 project exploring (partially replicating?) the "Juice it or Lose it" GDC 2012 presentation.
 
 
 ## Implementation
