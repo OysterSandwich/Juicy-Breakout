@@ -46,8 +46,7 @@ margin_top = 10.0
 margin_right = 10.0
 margin_bottom = 10.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="Color_Paddle" type="CheckBox" parent="Menu/Color"]
@@ -124,9 +123,6 @@ margin_top = 90.0
 margin_right = 115.0
 margin_bottom = 114.0
 text = "Particle Ball"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Blocks" type="Control" parent="Menu"]
 margin_left = 300.0
@@ -253,9 +249,13 @@ margin_left = 10.0
 margin_right = 146.419
 margin_bottom = 36.4193
 text = "Ball Trail"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Impact_Ball" type="CheckBox" parent="Menu/Ball"]
+margin_left = 10.0
+margin_top = 27.0
+margin_right = 146.419
+margin_bottom = 63.4193
+text = "Ball Impact"
 
 [node name="Paddle" type="Control" parent="Menu"]
 margin_left = 550.0
@@ -331,30 +331,41 @@ __meta__ = {
 
 [node name="Face" type="Control" parent="Menu"]
 margin_left = 800.0
-margin_top = 400.0
+margin_top = 363.0
 margin_right = 840.0
-margin_bottom = 440.0
+margin_bottom = 403.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Paddle_Face" type="CheckBox" parent="Menu/Face"]
+[node name="Paddle_Eyes" type="CheckBox" parent="Menu/Face"]
+margin_top = 3.0
 margin_right = 135.0
-margin_bottom = 32.0
-text = "Paddle Face"
+margin_bottom = 35.0
+text = "Paddle Eyes"
+
+[node name="Paddle_Mouth" type="CheckBox" parent="Menu/Face"]
+margin_top = 30.0
+margin_right = 135.0
+margin_bottom = 62.0
+text = "Paddle Mouth"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reset" type="Button" parent="Menu"]
+[node name="All Off" type="Button" parent="Menu"]
 margin_top = 650.0
 margin_right = 80.0
 margin_bottom = 680.0
-text = "Reset"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "All Off"
+
+[node name="All On" type="Button" parent="Menu"]
+margin_left = 100.0
+margin_top = 650.0
+margin_right = 180.0
+margin_bottom = 680.0
+text = "All On"
 
 [node name="Restart" type="Button" parent="Menu"]
 margin_left = 700.0
@@ -389,12 +400,15 @@ text = "Quit"
 [connection signal="value_changed" from="Menu/Screen_Shake/Screen_Shake_Blocks" to="." method="_on_Screen_Shake_Blocks_value_changed"]
 [connection signal="value_changed" from="Menu/Screen_Shake/Screen_Shake_Walls" to="." method="_on_Screen_Shake_Walls_value_changed"]
 [connection signal="toggled" from="Menu/Ball/Ball_Trail" to="." method="_on_Ball_Trail_toggled"]
+[connection signal="toggled" from="Menu/Ball/Impact_Ball" to="." method="_on_Impact_Ball_toggled"]
 [connection signal="toggled" from="Menu/Paddle/Paddle_Appear" to="." method="_on_Paddle_Appear_toggled"]
 [connection signal="toggled" from="Menu/Paddle/Paddle_Stretch" to="." method="_on_Paddle_Stretch_toggled"]
 [connection signal="toggled" from="Menu/Audio/Audio_music" to="." method="_on_Audio_music_toggled"]
 [connection signal="toggled" from="Menu/Audio/Audio_effects" to="." method="_on_Audio_effects_toggled"]
 [connection signal="toggled" from="Menu/Effects/Effects_blur" to="." method="_on_Effects_blur_toggled"]
-[connection signal="toggled" from="Menu/Face/Paddle_Face" to="." method="_on_Paddle_Face_toggled"]
-[connection signal="pressed" from="Menu/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="toggled" from="Menu/Face/Paddle_Eyes" to="." method="_on_Paddle_Eyes_toggled"]
+[connection signal="toggled" from="Menu/Face/Paddle_Mouth" to="." method="_on_Paddle_Mouth_toggled"]
+[connection signal="pressed" from="Menu/All Off" to="." method="_on_All_Off_pressed"]
+[connection signal="pressed" from="Menu/All On" to="." method="_on_All_On_pressed"]
 [connection signal="pressed" from="Menu/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="Menu/Quit" to="." method="_on_Quit_pressed"]

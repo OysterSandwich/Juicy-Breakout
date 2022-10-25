@@ -128,9 +128,6 @@ margin_right = 1275.0
 margin_bottom = 968.0
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Timer" type="Timer" parent="Background"]
 wait_time = 5.0
@@ -164,9 +161,9 @@ script = ExtResource( 1 )
 margin_left = -50.0
 margin_right = 50.0
 margin_bottom = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 50, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle_Container/Paddle"]
 position = Vector2( 0, 10 )
@@ -177,25 +174,27 @@ shape = SubResource( 8 )
 [node name="Face" type="Node2D" parent="Paddle_Container/Paddle"]
 script = ExtResource( 12 )
 
-[node name="Eye_left" type="Sprite" parent="Paddle_Container/Paddle/Face"]
+[node name="Eyes" type="Node2D" parent="Paddle_Container/Paddle/Face"]
+
+[node name="Eye_left" type="Sprite" parent="Paddle_Container/Paddle/Face/Eyes"]
 position = Vector2( -35, -10 )
 texture = ExtResource( 15 )
 
-[node name="Eye_right" type="Sprite" parent="Paddle_Container/Paddle/Face"]
+[node name="Eye_right" type="Sprite" parent="Paddle_Container/Paddle/Face/Eyes"]
 position = Vector2( 35, -10 )
 texture = ExtResource( 15 )
 
-[node name="Pupil_left" type="Node2D" parent="Paddle_Container/Paddle/Face"]
+[node name="Pupil_left" type="Node2D" parent="Paddle_Container/Paddle/Face/Eyes"]
 position = Vector2( -35, -10 )
 
-[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face/Pupil_left"]
+[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face/Eyes/Pupil_left"]
 position = Vector2( 10, 0 )
 texture = ExtResource( 14 )
 
-[node name="Pupil_right" type="Node2D" parent="Paddle_Container/Paddle/Face"]
+[node name="Pupil_right" type="Node2D" parent="Paddle_Container/Paddle/Face/Eyes"]
 position = Vector2( 35, -10 )
 
-[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face/Pupil_right"]
+[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face/Eyes/Pupil_right"]
 position = Vector2( 10, 0 )
 texture = ExtResource( 14 )
 
@@ -233,9 +232,6 @@ custom_fonts/font = SubResource( 16 )
 text = "Starting in: "
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 17 )

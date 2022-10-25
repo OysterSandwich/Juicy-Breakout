@@ -12,25 +12,29 @@ func _ready():
 func _physics_process(_delta):
 	if get_node("/root/Game/Ball_Container").has_node("Ball"):
 		var ball = get_node("/root/Game/Ball_Container/Ball")
-		$Pupil_left/Sprite.position.x = 10
-		$Pupil_right/Sprite.position.x = 10
-		$Pupil_left.look_at(ball.position)
-		$Pupil_right.look_at(ball.position)
-		var d = ((($Mouth.global_position.y - ball.global_position.y)/height)-0.2)*2
+		$Eyes/Pupil_left/Sprite.position.x = 10
+		$Eyes/Pupil_right/Sprite.position.x = 10
+		$Eyes/Pupil_left.look_at(ball.position)
+		$Eyes/Pupil_right.look_at(ball.position)
+		var d = ((($Mouth.global_position.y - ball.global_position.y)/height)-0.5)*2
 		d = clamp(d, -1, 1)
-		$Mouth.scale.y = d
+		$Mouth.scale.y = -d
 	else:
-		$Pupil_left/Sprite.position.x = 0
-		$Pupil_right/Sprite.position.x = 0
+		$Eyes/Pupil_left/Sprite.position.x = 0
+		$Eyes/Pupil_right/Sprite.position.x = 0
 		$Mouth.scale.y = 1
 
 		
 
 func show_face():
-	if HUD.paddle_face:
-		show()
+	if HUD.paddle_eyes:
+		$Eyes.show()
 	else:
-		hide()
+		$Eyes.hide()
+	if HUD.paddle_mouth:
+		$Mouth.show()
+	else:
+		$Mouth.hide()
 
 
 func _on_HUD_changed():

@@ -19,10 +19,12 @@ var screen_shake_paddle = 0
 var screen_shake_blocks = 0
 var screen_shake_walls = 0
 var ball_trail = false
+var impact_ball = false
 
 var paddle_appear = false
 var paddle_stretch = false
-var paddle_face = false
+var paddle_eyes = false
+var paddle_mouth = false
 
 var audio_music = false
 var audio_effects = false
@@ -35,41 +37,43 @@ signal changed
 var WE = null
 
 func _ready():
-	reset_values()
+	_on_All_On_pressed()
 	if effects_blur:
 		WE = get_node_or_null("/root/Game/WorldEnvironment")
 		if WE != null:
 			WE.show()
 	
-func reset_values():
-	color_paddle = true
-	color_ball = true
-	color_blocks = true
-	color_background = true
+func set_All_Values(value):
+	color_paddle = value
+	color_ball = value
+	color_blocks = value
+	color_background = value
 
-	particle_paddle = true
-	particle_walls = true
-	particle_blocks = true
-	particle_ball = true
+	particle_paddle = value
+	particle_walls = value
+	particle_blocks = value
+	particle_ball = value
 
-	blocks_appear = true
-	blocks_fall = true
-	blocks_fade = true
-	blocks_rotate = true
+	blocks_appear = value
+	blocks_fall = value
+	blocks_fade = value
+	blocks_rotate = value
 
-	screen_shake_paddle = 50
-	screen_shake_blocks = 50
-	screen_shake_walls = 50
-	ball_trail = true
+	screen_shake_paddle = 50*value
+	screen_shake_blocks = 50*value
+	screen_shake_walls = 50*value
+	ball_trail = value
+	impact_ball = value
 
-	paddle_appear = true
-	paddle_stretch = true
-	paddle_face = true
+	paddle_appear = value
+	paddle_stretch = value
+	paddle_eyes = value
+	paddle_mouth = value
 
-	audio_music = true
-	audio_effects = true
+	audio_music = value
+	audio_effects = value
 
-	effects_blur = true
+	effects_blur = value
 	emit_signal("changed")
 	set_UI()
 
@@ -90,6 +94,7 @@ func set_UI():
 	$Menu/Blocks/Blocks_Rotate.pressed = blocks_rotate
 	 
 	$Menu/Ball/Ball_Trail.pressed = ball_trail
+	$Menu/Ball/Impact_Ball.pressed = impact_ball
 
 	$Menu/Paddle/Paddle_Appear.pressed = paddle_appear
 	$Menu/Paddle/Paddle_Stretch.pressed = paddle_stretch
@@ -103,12 +108,15 @@ func set_UI():
 
 	$Menu/Effects/Effects_blur.pressed = effects_blur
 
-	$Menu/Face/Paddle_Face.pressed = paddle_face
+	$Menu/Face/Paddle_Eyes.pressed = paddle_eyes
+	$Menu/Face/Paddle_Mouth.pressed = paddle_mouth
 
 
-func _on_Reset_pressed():
-	reset_values()
-	
+func _on_All_Off_pressed():
+	set_All_Values(0)	
+
+func _on_All_On_pressed():
+	set_All_Values(1)
 
 func _on_Restart_pressed():
 	get_node("/root/Game/Bricks").start_bricks()
@@ -136,6 +144,9 @@ func _on_Ball_Trail_toggled(button_pressed):
 	ball_trail = button_pressed
 	emit_signal("changed")
 
+func _on_Impact_Ball_toggled(button_pressed):
+	impact_ball = button_pressed
+	emit_signal("changed")
 
 
 func _on_Paddle_Appear_toggled(button_pressed):
@@ -146,8 +157,12 @@ func _on_Paddle_Stretch_toggled(button_pressed):
 	paddle_stretch = button_pressed
 	emit_signal("changed")
 
-func _on_Paddle_Face_toggled(button_pressed):
-	paddle_face = button_pressed
+func _on_Paddle_Eyes_toggled(button_pressed):
+	paddle_eyes = button_pressed
+	emit_signal("changed")
+
+func _on_Paddle_Mouth_toggled(button_pressed):
+	paddle_mouth = button_pressed
 	emit_signal("changed")
 
 

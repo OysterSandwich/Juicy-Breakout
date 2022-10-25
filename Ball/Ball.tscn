@@ -67,9 +67,7 @@ texture = ExtResource( 2 )
 [node name="Color" type="ColorRect" parent="."]
 margin_right = 15.0
 margin_bottom = 15.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_pivot_offset = Vector2( 7.5, 7.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 7.5, 7.5 )

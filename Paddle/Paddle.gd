@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var Ball = load("res://Ball/Ball.tscn")
 onready var HUD = get_node("/root/Game/HUD")
 
-export var speed = 30
+export var speed = 70
 export var distort = Vector2(1.5,1.1)
 export var fall_duration = 3
 
@@ -33,8 +33,9 @@ func _physics_process(_delta):
 	position.x += s*t
 
 	if HUD.paddle_stretch:
-		var w = 1 + (distort.x * p)
-		var h = 1 - (1/distort.y * p)
+		var w = 1 + 5*(distort.x * p)
+		var h = 1 - 5*(1/distort.y * p)
+		h = max(h,0.1)
 		change_size(w,h)
 		color.s = color_s * (1-p)
 		update_color()

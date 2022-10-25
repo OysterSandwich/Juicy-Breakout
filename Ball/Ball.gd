@@ -5,6 +5,9 @@ export var min_speed = 100.0
 onready var HUD = get_node("/root/Game/HUD")
 onready var camera = get_node("/root/Game/Camera")
 
+onready var DEFAULT_RECT_SCALE = $Color.rect_scale
+onready var DEFAULT_COLOR = $Color.color
+
 onready var effect_paddle = get_node("/root/Game/Effect_Paddle")
 onready var effect_wall = get_node("/root/Game/Effect_Wall")
 onready var effect_brick = get_node("/root/Game/Effect_Brick")
@@ -22,9 +25,9 @@ func _ready():
 
 func update_color():
 	if HUD.color_ball:
-		$Color.color = Color8(34,184,207)
+		DEFAULT_COLOR = Color8(34,184,207)
 	else:
-		$Color.color = Color(1,1,1,1)
+		DEFAULT_COLOR = Color(1,1,1,1)
 	if HUD.particle_ball:
 		$Particles2D.emitting = true
 	else:
@@ -46,10 +49,16 @@ func _physics_process(_delta):
 		c.rect_global_position = global_position
 		c.color = c.color.darkened(0.4)
 		get_node("/root/Game/Trail_Container").add_child(c)
-
+		
+	$Color.rect_scale = $Color.rect_scale.linear_interpolate(
+		DEFAULT_RECT_SCALE, 0.2)
+	$Color.color = $Color.color.linear_interpolate(
+		DEFAULT_COLOR, 0.2)
 
 	var bodies = get_colliding_bodies()
 	for body in bodies:
+		if(HUD.impact_ball):
+			set_ball_on_fire()
 		if body.name == "Walls":
 			if HUD.screen_shake_walls > 0:
 				camera.add_trauma(wall_trauma*HUD.screen_shake_walls)
@@ -67,6 +76,10 @@ func _physics_process(_delta):
 			body.emit_particle(global_position)
 		if body.is_in_group("Brick"):
 			body.die()
+
+func set_ball_on_fire():
+	$Color.rect_scale = DEFAULT_RECT_SCALE*2
+	$Color.color = Color(1,1,1,1)
 
 func _integrate_forces(state):
 	if abs(state.linear_velocity.x) < min_speed:
