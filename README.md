@@ -2,12 +2,12 @@
 
 A Godot 3 project exploring the "Juice it or Lose it" GDC 2012 presentation [1].
 
-Originally created by Jason Francis
+Originally created by Jason Francis \
 Forked by Fabian Ostermann
 
 ## Implementation
 
-Updated to Godot 3.5.1
+Updated to Godot 3.5.1 **⚠ TODO: *UPDATE to Godot 4* ⚠**
 
 Typeface: [Datalegreya](https://fontlibrary.org/en/font/datalegreya) by Figs Lab
 
